@@ -1,60 +1,59 @@
 name: build-shinylive
+on: [push]
 
-on: [push]                    # run on every push
-
-# The three permissions Pages needs
 permissions:
-  contents: read
+  contents: read          # required by configure-pages
   pages: write
   id-token: write
 
-# Ensures only one Pages deployment runs at a time
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-
-###############################################################################
-# BUILD JOB – makes dist/ and uploads it as a Pages artifact
-###############################################################################
+###########################################################################
+# BUILD: creates dist/ and uploads it as the 'github-pages' artifact
+###########################################################################
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: r-lib/actions/setup-r@v2
 
-      # System libs needed by shinylive's deps
+      # System libs for shinylive's dependencies
       - name: Install system libraries
         run: |
           sudo apt-get update
           sudo apt-get install -y \
-            libarchive-dev \
-            libcurl4-openssl-dev \
-            libgit2-dev \
-            libssl-dev \
-            zlib1g-dev
+            libarchive-dev libcurl4-openssl-dev libgit2-dev libssl-dev zlib1g-dev
 
       # Install shinylive
       - name: Install shinylive
         run: |
           Rscript -e 'options(repos = c(CRAN="https://cloud.r-project.org")); install.packages("shinylive")'
 
+      # NEW: tell Pages we have static output
+      - uses: actions/configure-pages@v5
+
       # Build the static bundle
       - name: Build shinylive bundle
         run: |
           Rscript -e 'shinylive::export(appdir=".", destdir="dist", include_assets="www")'
 
-      # Upload dist/ — **v3** action is required
+      # Upload for deployment (v3)
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
-###############################################################################
-# DEPLOY JOB – publishes that artifact to GitHub Pages
-###############################################################################
+###########################################################################
+# DEPLOY: publishes that artifact to GitHub Pages
+###########################################################################
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/deploy-pages@v2       # no extra inputs needed
+      - id: deployment
+        uses: actions/deploy-pages@v4
