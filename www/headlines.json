@@ -1,0 +1,141 @@
+[
+  { "type":"supply", "severity":"high",
+    "tr":"Brent petrolü %9 fırladı; rafineriler ek vardiya arayışında.",
+    "en":"Brent crude jumps 9 %; refineries scramble for overtime." },
+
+  { "type":"supply", "severity":"high",
+    "tr":"Ukrayna limanları kapalı: Buğday fiyatı 14 yılın zirvesinde.",
+    "en":"Black Sea ports shut—wheat tops 14-year high." },
+
+  { "type":"supply", "severity":"medium",
+    "tr":"Doğalgaz stokları mevsim normallerinin altına geriledi.",
+    "en":"Gas storage slips below seasonal norms." },
+
+  { "type":"supply", "severity":"medium",
+    "tr":"Çip sıkıntısı otomotiv üretimini yavaşlattı.",
+    "en":"Chip shortage puts the brakes on auto output." },
+
+  { "type":"supply", "severity":"low",
+    "tr":"Kuraklık, sebze rekoltesini %2 düşürdü.",
+    "en":"Dry spell trims vegetable harvest by 2 %." },
+
+  { "type":"supply", "severity":"low",
+    "tr":"Lojistik maliyetleri hafifçe artıyor—nakliye ücretleri +%1.",
+    "en":"Freight costs inch up—shipping rates +1 %." },
+
+  { "type":"demand", "severity":"high",
+    "tr":"Tüketici güveni tarihi dipte; perakende satışlar %7 geriledi.",
+    "en":"Consumer confidence record-low; retail off 7 %." },
+
+  { "type":"demand", "severity":"high",
+    "tr":"Kayıtdışı işsizlik artışı: Hane bütçeleri kesintide.",
+    "en":"Shadow unemployment rises; households slash budgets." },
+
+  { "type":"demand", "severity":"medium",
+    "tr":"Tatilde iç turizm beklentinin altında kaldı.",
+    "en":"Domestic tourism undershoots holiday forecast." },
+
+  { "type":"demand", "severity":"medium",
+    "tr":"Cep telefonu satışları küresel ölçekte yavaşlıyor.",
+    "en":"Smart-phone sales cool worldwide." },
+
+  { "type":"demand", "severity":"low",
+    "tr":"E-ticaret büyümesi tek hanelere indi.",
+    "en":"E-commerce growth slides to single digits." },
+
+  { "type":"demand", "severity":"low",
+    "tr":"Kafe-restoran ciroları mevsimsel durgunlukta.",
+    "en":"Cafés and restaurants enter seasonal lull." },
+
+  { "type":"currency", "severity":"high",
+    "tr":"TL, dolara karşı %6 değer kaybetti; swap faizleri sıçradı.",
+    "en":"Lira tumbles 6 %; swap rates spike." },
+
+  { "type":"currency", "severity":"high",
+    "tr":"Euro/TL 30 eşiğini test ediyor—döviz bürolarında kuyruk.",
+    "en":"EUR/TRY tests 30—queues at exchanges." },
+
+  { "type":"currency", "severity":"medium",
+    "tr":"Merkez Bankası ara satışla kuru %1 geriletti.",
+    "en":"CB intraday sale trims FX 1 %." },
+
+  { "type":"currency", "severity":"medium",
+    "tr":"CDS primi 40 bp arttı—risk iştahı zayıflıyor.",
+    "en":"Sovereign CDS widens 40 bp; risk appetite fades." },
+
+  { "type":"currency", "severity":"low",
+    "tr":"Yabancı girişleri sınırlı; tahvil getirileri yatay.",
+    "en":"Foreign inflows limited; bond yields flat." },
+
+  { "type":"currency", "severity":"low",
+    "tr":"Swap hacmi sakin—bankalar bekle-gör modunda.",
+    "en":"FX-swap volumes subdued; banks on hold." },
+
+  { "type":"positive", "severity":"high",
+    "tr":"Yeni doğalgaz sahası devrede: enerji fiyatı sert düştü.",
+    "en":"New gas field online—power prices dive." },
+
+  { "type":"positive", "severity":"high",
+    "tr":"Teknoloji yatırımları rekor: üretkenlik +%5 projeksiyonu.",
+    "en":"Tech investment boom—productivity seen +5 %." },
+
+  { "type":"positive", "severity":"medium",
+    "tr":"Tarım verimi 3. yıl üst üste artışta.",
+    "en":"Farm yields up third year running." },
+
+  { "type":"positive", "severity":"medium",
+    "tr":"Yarı iletken arzında toparlanma—otomotiv bantları hızlandı.",
+    "en":"Chip supply rebounds—auto lines speed up." },
+
+  { "type":"positive", "severity":"low",
+    "tr":"Perakende indirim sezonu enflasyonu frenliyor.",
+    "en":"Retail discount season tempers inflation." },
+
+  { "type":"positive", "severity":"low",
+    "tr":"Lojistik darboğazları çözüldü—navlun maliyetleri %1 geriledi.",
+    "en":"Logistics bottlenecks clear; freight −1 %." },
+
+  { "type":"supply", "severity":"high",
+    "tr":"İlaç hammaddesi ihracat yasağı: eczaneler stok yapıyor.",
+    "en":"Drug precursor export ban—pharmacies stock up." },
+
+  { "type":"demand", "severity":"high",
+    "tr":"Taksitli satış sınırı: elektronik talebi çöktü.",
+    "en":"Installment cap crushes electronics demand." },
+
+  { "type":"currency", "severity":"medium",
+    "tr":"Kredi notu görünümü negatife çekildi.",
+    "en":"Credit-rating outlook cut to negative." },
+
+  { "type":"positive", "severity":"medium",
+    "tr":"Yenilenebilir vergi teşviki: elektrik maliyeti düşecek.",
+    "en":"Tax break for renewables may cut power bills." },
+
+  { "type":"supply", "severity":"low",
+    "tr":"Çelik fiyatı sakin—inşaat firmaları marj koruyor.",
+    "en":"Steel prices calm—builders keep margins." },
+
+  { "type":"demand", "severity":"low",
+    "tr":"KDV indirimi mobilya satışını canlandırdı.",
+    "en":"VAT cut lifts furniture sales." },
+
+  { "type":"currency", "severity":"low",
+    "tr":"Swap hattı duyurusu piyasayı rahatlattı.",
+    "en":"CB swap-line news steadies market." },
+
+  { "type":"positive", "severity":"high",
+    "tr":"Yabancı yatırım 4 yılın zirvesinde—%1,3 GSYH girişi.",
+    "en":"FDI hits 4-year high—1.3 % of GDP." },
+
+  { "type":"positive", "severity":"low",
+    "tr":"Turizmde erken rezervasyon %10 arttı.",
+    "en":"Early bookings up 10 % for summer." },
+
+  { "type":"supply", "severity":"medium",
+    "tr":"Enerji tavanı kaldırıldı; sanayi tarifesi çift haneli.",
+    "en":"Power price cap removed—industrial tariff double-digit." },
+
+  { "type":"demand", "severity":"medium",
+    "tr":"Ev kredileri yavaşladı—konut satışları %3 geriledi.",
+    "en":"Mortgage uptake slows; home sales −3 %." }
+]

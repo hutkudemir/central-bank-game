@@ -1,0 +1,26 @@
+{
+    "id": "FFAD237E",
+    "path": "~/Documents/cbank/shiny-deps.R",
+    "project_path": "shiny-deps.R",
+    "type": "r_source",
+    "hash": "2045587080",
+    "contents": "",
+    "dirty": false,
+    "created": 1750877152374.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "5,0",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1750877173,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1750877173277,
+    "read_only": false,
+    "read_only_alternatives": []
+}

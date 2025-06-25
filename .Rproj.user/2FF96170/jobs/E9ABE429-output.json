@@ -1,0 +1,6 @@
+[1,"Installing 'munsell' ...\n"]
+[2,"trying URL 'https://cran.rstudio.com/bin/macosx/big-sur-arm64/contrib/4.5/munsell_0.5.1.tgz'\n"]
+[2,"Content type 'application/x-gzip' length 244343 bytes (238 KB)\n==================="]
+[1,"The downloaded binary packages are in\n"]
+[1,"\t/var/folders/vy/c2sfc4d94975z54nyrdvq3740000gn/T//RtmpV0rE8h/downloaded_packages\n"]
+[2,"===============================\ndownloaded 238 KB\n\n\n\n✔ Package 'munsell' successfully installed.\n"]

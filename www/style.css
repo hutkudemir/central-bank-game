@@ -1,0 +1,129 @@
+/* --- project_root/www/style.css --- */
+/* Custom CSS to ensure compact panels and responsive design */
+.compact-panel {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.compact-metric {
+  padding: 8px 5px;
+  margin: 5px 0;
+  border-radius: 8px;
+  height: 80px;
+  overflow: hidden;
+}
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+}
+.compact-header {
+  font-size: 12px;
+  margin: 0;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.compact-value {
+  font-size: 16px;
+  margin: 3px 0;
+}
+.compact-subtext {
+  font-size: 10px;
+  margin: 0;
+  opacity: 0.8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.control-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.news-card {
+  min-height: 180px;
+}
+.shock-table {
+  max-height: 250px;
+  overflow-y: auto;
+}
+.plotly.html-widget {
+  height: 380px !important;
+}
+.advisor-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 15px;
+  padding: 10px;
+}
+.policy-option {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  background: linear-gradient(135deg, #2c3e50, #34495e);
+  border-top: 4px solid;
+  margin-bottom: 15px;
+}
+.policy-option:hover {
+  transform: translateY(-5px);
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .metric-grid, .advisor-container {
+    grid-template-columns: 1fr;
+  }
+  .compact-metric {
+    height: auto;
+    min-height: 80px;
+  }
+  .compact-header, .compact-subtext {
+    white-space: normal;
+  }
+}
+
+/* ----------- Dark Mode Support for rintrojs Tutorial Popups ----------- */
+.introjs-tooltip, .introjs-tooltipReferenceLayer {
+  background-color: #181c1f !important;   /* Match dark panel background */
+  color: #fff !important;                 /* White text */
+  border-radius: 10px !important;
+  font-size: 16px !important;
+  box-shadow: 0 6px 24px #000b;
+  max-width: 370px;
+}
+.introjs-helperNumberLayer {
+  background: #0d6efd !important;         /* Blue badge for step number */
+  color: #fff !important;
+  font-weight: bold;
+  border-radius: 50% !important;
+  box-shadow: 0 2px 6px #0005;
+}
+.introjs-tooltip-title {
+  color: #fff !important;
+  font-weight: bold;
+}
+.introjs-tooltiptext, .introjs-bullets li {
+  color: #fff !important;
+}
+.introjs-arrow {
+  border-top-color: #181c1f !important;
+  border-bottom-color: #181c1f !important;
+}
+.introjs-button {
+  background: #0d6efd !important;         /* Bootstrap blue */
+  color: #fff !important;
+  border-radius: 7px !important;
+  font-weight: 600;
+  box-shadow: 0 2px 10px #0002;
+  border: none !important;
+}
+.introjs-skipbutton, .introjs-prevbutton, .introjs-nextbutton, .introjs-donebutton {
+  background: #222b38 !important;
+  color: #fff !important;
+  border-radius: 7px !important;
+}
+.introjs-disabled, .introjs-disabled:focus {
+  opacity: 0.45 !important;
+}
