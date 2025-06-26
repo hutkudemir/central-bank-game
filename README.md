@@ -4,6 +4,28 @@
 
 **Play now → <https://demir.pw/game/>**
 
+## Inspiration & Credits
+
+> 🇬🇧 **English** | 🇹🇷 **Türkçe** aşağıda
+
+The idea began with the **Fed Chair Game** released by the Federal Reserve
+Bank of San Francisco (2016-2023).  
+When that site was retired, I rebuilt open-source version and
+expanded it with advisors, press conferences, credibility dynamics and a
+bilingual UI.  
+This project is **independent** and **not endorsed** by any central bank.
+
+---
+
+> 🇹🇷 **Türkçe**
+
+Bu proje, 2016-2023 yılları arasında yayımlanan **“Fed Chair Game”** fikrinden
+esinlenmiştir. Orijinal oyun kaldırılınca, sıfırdan kodlanmış ve yeni
+özelliklerle (danışmanlar, basın toplantısı, itibar puanı, çift dil desteği)
+zenginleştirilmiş açık kaynaklı bir sürüm geliştirdim.  
+Merkez bankalarıyla **herhangi bir resmî bağlantısı yoktur**.
+
+
 ## Gameplay snapshots
 
 ![first](firstt.gif)
