@@ -236,7 +236,7 @@ server <- function(input, output, session) {
     nextIndex <- curr + 2
     
     # 1. Chosen rate
-    i_chosen <- input$interest
+    i_chosen <- max(0, input$interest)
     pi_t <- rv$infl[currIndex]
     u_t  <- rv$unemp[currIndex]
     r_star <- rv$r_star

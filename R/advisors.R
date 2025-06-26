@@ -57,9 +57,9 @@ econ_generate_advisor_options <- function(infl, unemp, cred, current_rate, langu
   hawk_step <- if (infl > 10) 75 else if (shock_active && shock$inflEffect > 0) 60 else 50
   
   # --- Compute advisor rates ---
-  bal_rate <- opt_rate
+  bal_rate <- max(0, opt_rate)                   # ⬅️ clamp
   dov_rate <- max(0, round((opt_rate - dove_step/100) / 0.25) * 0.25)
-  haw_rate <- min(50, round((opt_rate + hawk_step/100) / 0.25) * 0.25)
+  haw_rate <- max(0, round((opt_rate + hawk_step/100) / 0.25) * 0.25)
   
   # --- Localization helper ---
   T_ <- function(tr, en) if (language=='tr') tr else en

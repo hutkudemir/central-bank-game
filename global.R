@@ -27,7 +27,7 @@ region_defaults <- list(
   ),
   "United States" = list(
     pi_star  = 2,   u_star  = 4,   r_star  = 0.5,
-    init_pi  = 3,   init_u  = 4.2, init_r  = 4.5
+    init_pi  = 5,   init_u  = 4.2, init_r  = 4.5
   ),
   "Euro Area" = list(
     pi_star  = 2,   u_star  = 6.5, r_star  = 0,
