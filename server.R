@@ -34,6 +34,23 @@ server <- function(input, output, session) {
   # ------------------------------------------------------------------
   stopShock  <- function() session$sendCustomMessage("stop-shock",  list())
   
+  observeEvent(input$region, {
+    cfg <- region_defaults[[input$region]]
+    
+    rv$pi_star <- cfg$pi_star
+    rv$u_star  <- cfg$u_star
+    rv$r_star  <- cfg$r_star
+    
+    # reset starting month only if at month 0
+    if (rv$month == 0) {
+      rv$infl[1]     <- cfg$init_pi
+      rv$unemp[1]    <- cfg$init_u
+      rv$interest[1] <- cfg$init_r
+      updateNumericInput(session, "interest", value = cfg$init_r)
+    }
+  })
+  
+  
 
   # ---- Language Reactivity ----
   observe({
