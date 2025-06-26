@@ -188,7 +188,10 @@ server <- function(input, output, session) {
       language     = rv$language,
       shock        = rv$shock,
       month        = rv$month,
-      lastApplied  = rv$lastApplied
+      lastApplied  = rv$lastApplied,
+      pi_star = rv$pi_star,
+      u_star  = rv$u_star,
+      r_star  = rv$r_star
     )
     
     
@@ -375,22 +378,44 @@ server <- function(input, output, session) {
     shock_unemp <- if (!is.null(rv$shock)) rv$shock$unempEffect * rv$shock$mag else 0
     shock_gdp   <- if (!is.null(rv$shock)) rv$shock$gdpEffect * rv$shock$mag else 0
     cred_mult <- 0.5 + (rv$credibility / 200)
-    k_inf  <- 0.60 * (1 + 0.07 * max(0, pi_t - 10)) * cred_mult
+    above_target  <- pi_t > pi_star               # TRUE / FALSE
+    k_inf_base    <- 0.30                         # as before
+    k_inf         <- k_inf_base *
+      if (above_target) 1 else 0.4  # 60 % weaker below target
+    k_inf <- k_inf * (1 + 0.07 * max(0, pi_t - 10)) * cred_mult
     k_unemp <- 0.25 * (1 - 0.04 * min(8, u_t)) * cred_mult
     k_gdp <- 0.30
     
     eps_inf   <- rnorm(1, mean = 0, sd = 0.1)
     eps_unemp <- rnorm(1, mean = 0, sd = 0.08)
     eps_gdp   <- rnorm(1, mean = 0, sd = 0.15)
+    
+    # ---- TRACE ---------------------------------------------------------------
+    delta_policy <- -k_inf * total_effect
+    delta_revert <- 0          # we removed the 0.02 pull; keep for printout
+    delta_shock  <- shock_inf
+    delta_noise  <- eps_inf
+    
+    cat(sprintf(
+      "M%02d  π=%.2f  i_chosen=%.2f  i_opt=%.2f  diff=%.2f\n",
+      rv$month, pi_t, i_chosen, i_opt, diff))
+    cat(sprintf(
+      "       policy=%.3f  revert=%.3f  shock=%.3f  noise=%.3f  sum=%.3f\n",
+      delta_policy, delta_revert, delta_shock, delta_noise,
+      delta_policy + delta_revert + delta_shock + delta_noise))
+    # --------------------------------------------------------------------------
 
     
     rv$interest[nextIndex] <- i_chosen
-    # new: only 95 % of last month “decays”, 5 % pulled to target
-    rv$infl[nextIndex] <- 0.98 * pi_t + 0.02 * pi_star +
-      (-k_inf * total_effect) + shock_inf + eps_inf
+    gap    <- pi_star - pi_t                 # positive if π below target
+    revert <- 0.04 * gap + 0.004 * gap^2     # linear + quadratic
+    rv$infl[nextIndex] <- pi_t +
+      revert +                         #  ← NEW
+      (-k_inf * total_effect) +
+      shock_inf + eps_inf
     phillips_effect <- -0.3 * (rv$infl[nextIndex] - pi_t)
-    rv$unemp[nextIndex] <- 0.90 * u_t + 0.10 * u_star + (k_unemp * total_effect) + shock_unemp + phillips_effect + eps_unemp
-    rv$gdp_growth[nextIndex] <- 0.7 * rv$gdp_growth[currIndex] + 0.3 * 3.0 + (-k_gdp * total_effect) + shock_gdp + eps_gdp
+    rv$unemp[nextIndex] <- 0.90 * u_t + 0.10 * u_star + (-k_unemp * total_effect) + shock_unemp + phillips_effect + eps_unemp
+    rv$gdp_growth[nextIndex] <- 0.7 * rv$gdp_growth[currIndex] + 0.3 * 3.0 + (k_gdp * total_effect) + shock_gdp + eps_gdp
     
     rv$infl[nextIndex] <- max(-2, min(40, rv$infl[nextIndex]))
     rv$unemp[nextIndex] <- max(3, min(25, rv$unemp[nextIndex]))
@@ -407,9 +432,9 @@ server <- function(input, output, session) {
       score    <- infl_dev*1.5 + unemp_dev
       ## set stricter threshold for higher difficulty
       threshold <- switch(rv$difficulty,
-                          hard   = 1.5,
-                          medium = 2.0,
-                          easy   = 2.5
+                          hard   = 2.0,
+                          medium = 2.5,
+                          easy   = 3.25
                           )
       if (score <= threshold && rv$credibility >= 60) {
         rv$result <- translations[[rv$language]]$verdict_hired
@@ -453,6 +478,8 @@ server <- function(input, output, session) {
     rv$pressTitle     <- press$title
     rv$pressStatement <- press$statement
   })
+  
+
   
   # --- ADVISOR OUTPUTS (Tab) ---
   output$opt1_name     <- renderText({ rv$advisor_options[[1]]$name })
