@@ -2,6 +2,14 @@
 
 **Play now → <https://hutkudemir.github.io/central-bank-game/>**
 
+## Gameplay snapshots
+
+| | | |
+|---|---|---|
+| ![first](firstt.gif) | ![second](second.gif) | ![third](third.gif) |
+| ![fourth](fourth.gif) | ![fifth](fifth.gif) | ![sixth](seven.gif) |
+| ![seventh](nine.gif) |  |  |
+
 ---
 
 ## 🇬🇧 English
