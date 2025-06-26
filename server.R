@@ -239,9 +239,9 @@ server <- function(input, output, session) {
     i_chosen <- input$interest
     pi_t <- rv$infl[currIndex]
     u_t  <- rv$unemp[currIndex]
-    r_star <- 3.0
-    pi_star <- 5.0
-    u_star <- 8.0
+    r_star <- rv$r_star
+    pi_star <- rv$pi_star
+    u_star <- rv$u_star
     
     # 2. Decision info
     rate_change <- round(abs(i_chosen - rv$interest[currIndex]), 2)
@@ -371,7 +371,7 @@ server <- function(input, output, session) {
     shock_gdp   <- if (!is.null(rv$shock)) rv$shock$gdpEffect * rv$shock$mag else 0
     cred_mult <- 0.5 + (rv$credibility / 200)
     k_inf  <- 0.45 * (1 + 0.1 * max(0, pi_t - 10)) * cred_mult
-    k_unemp <- 0.35 * (1 - 0.05 * min(8, u_t)) * cred_mult
+    k_unemp <- 0.35 * (1 - 0.05 * min(rv$u_star, u_t)) * cred_mult
     k_gdp <- 0.30
     
     eps_inf   <- rnorm(1, mean = 0, sd = 0.1)
