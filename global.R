@@ -19,6 +19,23 @@ cb_palette <- brewer.pal(5, "Set2")
 # How many decision months in the game
 TOTAL_PERIODS <- 36
 
+# ── Region-specific macro targets ----------------------------------------------
+region_defaults <- list(
+  "Türkiye" = list(
+    pi_star  = 5,   u_star  = 8,   r_star  = 3,
+    init_pi  = 12,  init_u  = 8,   init_r  = 12
+  ),
+  "United States" = list(
+    pi_star  = 2,   u_star  = 4,   r_star  = 0.5,
+    init_pi  = 3,   init_u  = 4.2, init_r  = 4.5
+  ),
+  "Euro Area" = list(
+    pi_star  = 2,   u_star  = 6.5, r_star  = 0,
+    init_pi  = 2.5, init_u  = 6.7, init_r  = 2.5
+  )
+)
+
+
 # Initialize reactive values for game state
 rv <- reactiveValues(
   # Game settings and state
