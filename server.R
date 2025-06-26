@@ -375,7 +375,7 @@ server <- function(input, output, session) {
     shock_unemp <- if (!is.null(rv$shock)) rv$shock$unempEffect * rv$shock$mag else 0
     shock_gdp   <- if (!is.null(rv$shock)) rv$shock$gdpEffect * rv$shock$mag else 0
     cred_mult <- 0.5 + (rv$credibility / 200)
-    k_inf  <- 0.30 * (1 + 0.07 * max(0, pi_t - 10)) * cred_mult
+    k_inf  <- 0.60 * (1 + 0.07 * max(0, pi_t - 10)) * cred_mult
     k_unemp <- 0.25 * (1 - 0.04 * min(8, u_t)) * cred_mult
     k_gdp <- 0.30
     
@@ -386,10 +386,10 @@ server <- function(input, output, session) {
     
     rv$interest[nextIndex] <- i_chosen
     # new: only 95 % of last month “decays”, 5 % pulled to target
-    rv$infl[nextIndex] <- 0.95 * pi_t + 0.05 * pi_star +
+    rv$infl[nextIndex] <- 0.98 * pi_t + 0.02 * pi_star +
       (-k_inf * total_effect) + shock_inf + eps_inf
     phillips_effect <- -0.3 * (rv$infl[nextIndex] - pi_t)
-    rv$unemp[nextIndex] <- 0.80 * u_t + 0.20 * u_star + (k_unemp * total_effect) + shock_unemp + phillips_effect + eps_unemp
+    rv$unemp[nextIndex] <- 0.90 * u_t + 0.10 * u_star + (k_unemp * total_effect) + shock_unemp + phillips_effect + eps_unemp
     rv$gdp_growth[nextIndex] <- 0.7 * rv$gdp_growth[currIndex] + 0.3 * 3.0 + (-k_gdp * total_effect) + shock_gdp + eps_gdp
     
     rv$infl[nextIndex] <- max(-2, min(40, rv$infl[nextIndex]))
