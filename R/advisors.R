@@ -19,20 +19,25 @@
 #' @param month         Current month index (0-based)
 #' @param lastApplied   Named list of last months each advisor was heeded (opt1, opt2, opt3)
 #' @return A list of three advisor options, each a list(name, rate, rationale, press, notice)
-econ_generate_advisor_options <- function(infl, unemp, cred, current_rate, language,
+econ_generate_advisor_options <- function(infl, unemp, cred,
+                                          current_rate, language,
                                           shock = NULL, month = 0,
-                                          lastApplied = list(opt1=NA, opt2=NA, opt3=NA)) {
-  # --- Reference benchmarks ---
-  r_star  <- 3.0    # neutral real rate
-  pi_star <- 5.0    # inflation target
-  u_star  <- 8.0    # natural unemployment
+                                          lastApplied = list(opt1=NA,opt2=NA,opt3=NA),
+                                          pi_star = 5, u_star = 8, r_star = 3) {
   
-  # --- Compute baseline optimal rate via internal framework ---
+  ## Taylor damping (already added earlier)
+  taylor_mult <- if (infl < pi_star || unemp > 15) 0.5 else 1
+  
   infl_gap   <- infl - pi_star
   unemp_gap  <- u_star - unemp
   output_gap <- 0.5 * unemp_gap
-  base_rate  <- r_star + infl + 0.6 * infl_gap + 0.4 * output_gap
+  
+  base_rate  <- r_star + infl +
+    0.6 * taylor_mult * infl_gap +
+    0.4 * taylor_mult * output_gap
+  
   opt_rate   <- round(base_rate / 0.25) * 0.25
+  
   
   # --- Shock context ---
   shock_active <- !is.null(shock)
@@ -57,9 +62,9 @@ econ_generate_advisor_options <- function(infl, unemp, cred, current_rate, langu
   hawk_step <- if (infl > 10) 75 else if (shock_active && shock$inflEffect > 0) 60 else 50
   
   # --- Compute advisor rates ---
-  bal_rate <- opt_rate
+  bal_rate <- max(0, opt_rate)                   # ⬅️ clamp
   dov_rate <- max(0, round((opt_rate - dove_step/100) / 0.25) * 0.25)
-  haw_rate <- min(50, round((opt_rate + hawk_step/100) / 0.25) * 0.25)
+  haw_rate <- max(0, round((opt_rate + hawk_step/100) / 0.25) * 0.25)
   
   # --- Localization helper ---
   T_ <- function(tr, en) if (language=='tr') tr else en

@@ -84,6 +84,15 @@ fluidPage(
                           width = "90px")
             ),
             div(
+              style = "display: flex; flex-direction: column;",
+              strong(textOutput("region_label"), style = "font-size: 13px;"),
+              selectInput("region",
+                          label = NULL,
+                          choices = c("Türkiye", "United States", "Euro Area"),
+                          selected = "Türkiye",
+                          width = "110px")
+            ),
+            div(
               style = "margin-bottom: 3px;",
               actionButton("helpBtn", label = NULL, icon = icon("question-circle"), class = "help-btn btn-outline-info btn-sm")
             ),

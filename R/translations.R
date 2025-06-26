@@ -279,3 +279,5 @@ translations <- list(
 # Add any additional dynamic translation entries
 translations$tr$credibility_subtext_tr <- "Yüksek = Daha Etkili"
 translations$en$credibility_subtext_en <- "High = More Effective"
+translations$tr$region_label <- "Ülke"
+translations$en$region_label <- "Region"
