@@ -385,7 +385,9 @@ server <- function(input, output, session) {
 
     
     rv$interest[nextIndex] <- i_chosen
-    rv$infl[nextIndex] <- 0.85 * pi_t + 0.15 * pi_star + (-k_inf * total_effect) + shock_inf + eps_inf
+    # new: only 95 % of last month “decays”, 5 % pulled to target
+    rv$infl[nextIndex] <- 0.95 * pi_t + 0.05 * pi_star +
+      (-k_inf * total_effect) + shock_inf + eps_inf
     phillips_effect <- -0.3 * (rv$infl[nextIndex] - pi_t)
     rv$unemp[nextIndex] <- 0.80 * u_t + 0.20 * u_star + (k_unemp * total_effect) + shock_unemp + phillips_effect + eps_unemp
     rv$gdp_growth[nextIndex] <- 0.7 * rv$gdp_growth[currIndex] + 0.3 * 3.0 + (-k_gdp * total_effect) + shock_gdp + eps_gdp
