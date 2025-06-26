@@ -2,13 +2,23 @@
 
 **Play now → <https://hutkudemir.github.io/central-bank-game/>**
 
+**Play now → <https://demir.pw/game/>**
+
 ## Gameplay snapshots
 
-| | | |
-|---|---|---|
-| ![first](firstt.gif) | ![second](second.gif) | ![third](third.gif) |
-| ![fourth](fourth.gif) | ![fifth](fifth.gif) | ![sixth](seven.gif) |
-| ![seventh](nine.gif) |  |  |
+![first](firstt.gif)
+
+![second](second.gif)
+
+![third](third.gif)
+
+![fourth](fourth.gif)
+
+![fifth](fifth.gif)
+
+![sixth](seven.gif)
+
+![seventh](nine.gif)
 
 ---
 
