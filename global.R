@@ -44,6 +44,10 @@ rv <- reactiveValues(
   max_months = TOTAL_PERIODS,                # total number of decision months in the game
   month = 0,                      # current month (starts at 0 before any decision)
   
+  pi_star = 5.0,
+  u_star  = 8.0,
+  r_star  = 3.0,
+  
   # Economic indicators (initial values plus placeholders for future months)
   infl       = c(12.0, numeric(TOTAL_PERIODS)),
   unemp      = c(8.0,  numeric(TOTAL_PERIODS)),
