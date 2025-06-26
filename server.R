@@ -255,8 +255,13 @@ server <- function(input, output, session) {
     rv$lastRateChange <- rate_change
     
     # 3. Calculate optimal policy rate
+    ## ----------  NEW DAMPING SWITCH  ----------
+    # If the economy is already in deflation (π < 0) or deep slump (u > 15),
+    # cut the Taylor weights in half to avoid runaway feedback.
+    
     output_gap <- (u_star - u_t) * 0.5
-    i_opt <- r_star + pi_t + 0.6 * (pi_t - pi_star) + 0.4 * output_gap
+    taylor_mult <- if (pi_t < 0 || u_t > 15) 0.5 else 1
+    i_opt <- r_star + pi_t + 0.6 * taylor_mult * (pi_t - pi_star) + 0.4 * taylor_mult * output_gap
     diff <- i_chosen - i_opt
     
     # Credibility effect
@@ -370,8 +375,8 @@ server <- function(input, output, session) {
     shock_unemp <- if (!is.null(rv$shock)) rv$shock$unempEffect * rv$shock$mag else 0
     shock_gdp   <- if (!is.null(rv$shock)) rv$shock$gdpEffect * rv$shock$mag else 0
     cred_mult <- 0.5 + (rv$credibility / 200)
-    k_inf  <- 0.45 * (1 + 0.1 * max(0, pi_t - 10)) * cred_mult
-    k_unemp <- 0.35 * (1 - 0.05 * min(rv$u_star, u_t)) * cred_mult
+    k_inf  <- 0.30 * (1 + 0.07 * max(0, pi_t - 10)) * cred_mult
+    k_unemp <- 0.25 * (1 - 0.04 * min(8, u_t)) * cred_mult
     k_gdp <- 0.30
     
     eps_inf   <- rnorm(1, mean = 0, sd = 0.1)
