@@ -63,7 +63,7 @@ server <- function(input, output, session) {
   label_keys <- c(
     "game_title", "difficulty_label", "help_btn", "interest_control", "increase_btn", "decrease_btn", "apply_decision",
     "econ_news", "inflation", "unemployment", "econ_health", "credibility", "game_progress", "shock_history", "press_conference", "press_info", "time_series", "phillips_curve", "policy_analysis", "advisor_recommendations", "policy_options",
-    "press_suggestion", "apply_policy", "press_statement", "game_stats", "download_results", "reset_game"
+    "press_suggestion", "apply_policy", "press_statement", "game_stats", "download_results", "reset_game", "region_label"
   )
   for (key in label_keys) {
     local({
