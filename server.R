@@ -6,7 +6,6 @@ library(shinyjs)
 library(bsicons)
 library(dplyr)
 
-
 # Source helpers
 source("R/utils_economic_model.R", local = TRUE)
 source("R/translations.R", local = TRUE)
@@ -264,9 +263,9 @@ server <- function(input, output, session) {
     # If the economy is already in deflation (π < 0) or deep slump (u > 15),
     # cut the Taylor weights in half to avoid runaway feedback.
     
-    output_gap <- (u_star - u_t) * 0.5
+    output_gap <- (u_star - u_t) * 1.0  # Don't halve the unemployment gap!
     taylor_mult <- if (pi_t < 0 || u_t > 15) 0.5 else 1
-    i_opt <- r_star + pi_t + 0.6 * taylor_mult * (pi_t - pi_star) + 0.4 * taylor_mult * output_gap
+    i_opt <- r_star + pi_t + 1.5 * taylor_mult * (pi_t - pi_star) + 1.0 * taylor_mult * output_gap
     diff <- i_chosen - i_opt
     
     # Credibility effect
