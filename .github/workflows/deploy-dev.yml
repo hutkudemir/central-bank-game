@@ -4,6 +4,10 @@ on:
   push:
     branches: [ development ]
 
+permissions:
+  contents: write
+  pages: write
+
 jobs:
   deploy-dev:
     runs-on: ubuntu-latest
@@ -29,3 +33,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist-dev
           destination_dir: dev
+          publish_branch: gh-pages
+          force_orphan: true
