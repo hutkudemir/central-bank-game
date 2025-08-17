@@ -20,6 +20,8 @@ source("R/advisors.R", local = TRUE)
 
 
 server <- function(input, output, session) {
+
+  safe_log("Game session started") 
   
   # ── AUDIO OBSERVERS ────────────────────────────────────────────────
   # 1) Mute / un-mute background music when the toggle button is clicked
