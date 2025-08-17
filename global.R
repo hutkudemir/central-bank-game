@@ -1,4 +1,7 @@
 # --- project_root/global.R ---
+# Central Bank Game - Version 1.0
+# Last tested: 17/09/2025
+# Development branch test
 
 # Load libraries (if needed in global scope)
 library(shiny)
