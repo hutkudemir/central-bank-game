@@ -3,6 +3,16 @@
 # Last tested: 17/09/2025
 # Development branch test
 
+# Safe error logging - helps you debug without breaking anything
+safe_log <- function(message) {
+  tryCatch({
+    # Print to console (won't show to users)
+    cat(paste(Sys.time(), "-", message, "\n"))
+  }, error = function(e) {
+    # Even if logging fails, game continues
+  })
+}
+
 # Load libraries (if needed in global scope)
 library(shiny)
 library(ggplot2)
