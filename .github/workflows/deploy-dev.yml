@@ -1,15 +1,11 @@
-name: Deploy Development Branch
+name: Test Development Branch
 
 on:
   push:
     branches: [ development ]
 
-permissions:
-  contents: write
-  pages: write
-
 jobs:
-  deploy-dev:
+  test-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -23,15 +19,7 @@ jobs:
           R -e 'install.packages("pak", repos = "https://r-lib.github.io/p/pak/stable/")'
           R -e 'pak::pkg_install("posit-dev/r-shinylive")'
           
-      - name: Build app
+      - name: Test that app builds
         run: |
-          R -e 'shinylive::export(".", "dist-dev", include_assets = TRUE)'
-          
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist-dev
-          destination_dir: dev
-          publish_branch: gh-pages
-          force_orphan: true
+          R -e 'shinylive::export(".", "test-build", include_assets = TRUE)'
+          echo "✅ App builds successfully!"
