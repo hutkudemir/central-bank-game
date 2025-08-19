@@ -1,0 +1,25 @@
+name: Test Development Branch
+
+on:
+  push:
+    branches: [ development ]
+
+jobs:
+  test-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.3.0'
+      
+      - name: Install packages
+        run: |
+          R -e 'install.packages("pak", repos = "https://r-lib.github.io/p/pak/stable/")'
+          R -e 'pak::pkg_install("posit-dev/r-shinylive")'
+          
+      - name: Test that app builds
+        run: |
+          R -e 'shinylive::export(".", "test-build", include_assets = TRUE)'
+          echo "✅ App builds successfully!"

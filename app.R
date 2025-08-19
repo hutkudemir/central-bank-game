@@ -1,4 +1,6 @@
 # --- project_root/app.R ---
+# Development branch - test change
+# Date: [today's date]
 # Main entry point for the application
 
 # Load necessary libraries
